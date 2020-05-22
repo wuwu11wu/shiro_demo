@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>登录注册</title>
+</head>
+<body>
+
+<h3>登录</h3>
+<h3 th:text="${msg}" style="color:red"></h3>
+
+<div color="red" th:text="${msg}"></div>
+
+<form th:action="@{/login/in/1}" method="post">
+    <p>用户名：<input type="text" name="username"></p>
+    <p>密码：<input type="text" name="password"></p>
+    <p><input type="submit"></p>
+    <input type="checkbox" name="rememberMe"/>记住我<br>
+</form>
+<br/>
+<form th:action="@{/login/in/0}" method="post">
+    <p>用户名：<input type="text" name="username"></p>
+    <p>密码：<input type="text" name="password"></p>
+    <p><input type="submit"></p>
+    <input type="checkbox" name="rememberMe"/>记住我<br>
+</form>
+
+
+</body>
+
+
+</html>

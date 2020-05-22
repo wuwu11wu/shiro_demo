@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:shiro="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+<div shiro:hasPermission="admin_add">
+    进入管理员页面：<a href="/admin/add">用户设置</a><br/>
+</div>
+<div shiro:hasPermission="user_add">
+    进入个人中心：<a href="/user/add">个人信息更改</a>
+</div>
+</body>
+</html>

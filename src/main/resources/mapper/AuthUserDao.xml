@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhi.dao.AuthUserDao">
+
+    <resultMap type="com.zhi.entity.AuthUser" id="AuthUserMap">
+        <result property="uid" column="uid" jdbcType="INTEGER"/>
+        <result property="username" column="username" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="realName" column="real_name" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="perms" column="perms" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="INTEGER"/>
+        <result property="phone" column="phone" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="isAdmin" column="is_admin" jdbcType="INTEGER"/>
+        <result property="createTime" column="CREATE_TIME" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="UPDATE_TIME" jdbcType="TIMESTAMP"/>
+        <result property="createWhere" column="CREATE_WHERE" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="AuthUserMap">
+        select
+          uid, username, password, real_name, status, perms, sex, phone, email, is_admin, CREATE_TIME, UPDATE_TIME, CREATE_WHERE
+        from shiro_demo.auth_user
+        where uid = #{uid}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="AuthUserMap">
+        select
+          uid, username, password, real_name, status, perms, sex, phone, email, is_admin, CREATE_TIME, UPDATE_TIME, CREATE_WHERE
+        from shiro_demo.auth_user
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="AuthUserMap">
+        select
+          uid, username, password, real_name, status, perms, sex, phone, email, is_admin, CREATE_TIME, UPDATE_TIME, CREATE_WHERE
+        from shiro_demo.auth_user
+        <where>
+            <if test="uid != null">
+                and uid = #{uid}
+            </if>
+            <if test="username != null and username != ''">
+                and username = #{username}
+            </if>
+            <if test="password != null and password != ''">
+                and password = #{password}
+            </if>
+            <if test="realName != null and realName != ''">
+                and real_name = #{realName}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="perms != null and perms != ''">
+                and perms = #{perms}
+            </if>
+            <if test="sex != null">
+                and sex = #{sex}
+            </if>
+            <if test="phone != null and phone != ''">
+                and phone = #{phone}
+            </if>
+            <if test="email != null and email != ''">
+                and email = #{email}
+            </if>
+            <if test="isAdmin != null">
+                and is_admin = #{isAdmin}
+            </if>
+            <if test="createTime != null">
+                and CREATE_TIME = #{createTime}
+            </if>
+            <if test="updateTime != null">
+                and UPDATE_TIME = #{updateTime}
+            </if>
+            <if test="createWhere != null">
+                and CREATE_WHERE = #{createWhere}
+            </if>
+        </where>
+    </select>
+
+
+    <select id="findByName" resultMap="AuthUserMap">
+		select
+          uid, username, password, real_name, status, perms, sex, phone, email, is_admin, CREATE_TIME, UPDATE_TIME, CREATE_WHERE
+        from shiro_demo.auth_user
+		where username = #{username}
+	</select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="uid" useGeneratedKeys="true">
+        insert into shiro_demo.auth_user(username, password, real_name, status, perms, sex, phone, email, is_admin, CREATE_TIME, UPDATE_TIME, CREATE_WHERE)
+        values (#{username}, #{password}, #{realName}, #{status}, #{perms}, #{sex}, #{phone}, #{email}, #{isAdmin}, #{createTime}, #{updateTime}, #{createWhere})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update shiro_demo.auth_user
+        <set>
+            <if test="username != null and username != ''">
+                username = #{username},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="realName != null and realName != ''">
+                real_name = #{realName},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="perms != null and perms != ''">
+                perms = #{perms},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="phone != null and phone != ''">
+                phone = #{phone},
+            </if>
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+            <if test="isAdmin != null">
+                is_admin = #{isAdmin},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime},
+            </if>
+            <if test="createWhere != null">
+                CREATE_WHERE = #{createWhere},
+            </if>
+        </set>
+        where uid = #{uid}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from shiro_demo.auth_user where uid = #{uid}
+    </delete>
+
+</mapper>
