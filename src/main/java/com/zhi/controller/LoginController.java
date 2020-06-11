@@ -1,5 +1,6 @@
 package com.zhi.controller;
 
+import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.zhi.shiro.component.UserToken;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -7,6 +8,7 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.apache.tomcat.util.security.MD5Encoder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class LoginController {
+
+
+    @Autowired
+    DefaultKaptcha defaultKaptcha;
 
     @RequestMapping("/tologin")
     public String tologin() {
@@ -42,16 +48,12 @@ public class LoginController {
     }
 
     @RequestMapping("/login/in/{flag}")
-    public String login(String username, String password, Model model, String rememberMe, @PathVariable("flag") Integer flag) {
+    public String login(String username, String password, Model model, @PathVariable("flag") Integer flag) {
         /**
          * 使用shiro编写认证操作
          */
         //获取subject:当前执行用户
         Subject subject = SecurityUtils.getSubject();
-
-        //密码加密
-//        MD5Encoder.encode(password.getBytes());
-
         //封装用户数据
         UserToken token = null;
         //读取用户身份
@@ -61,13 +63,13 @@ public class LoginController {
             token = new UserToken(username, password, "User");
         }
 
-
         token.setRememberMe(false);
-
-
         //执行登录方法
         try {
             subject.login(token);
+
+            //验证码
+
 
             System.out.println("登陆成功");
             //登录成功

@@ -9,7 +9,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.4.RELEASE</version>
+        <version>2.2.2.RELEASE</version>
     </parent>
 
     <groupId>com.zhi</groupId>
@@ -61,6 +61,35 @@
             <artifactId>thymeleaf-extras-shiro</artifactId>
             <version>2.0.0</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--图片验证码-->
+        <dependency>
+            <groupId>com.github.penggle</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>2.3.2</version>
+        </dependency>
+
     </dependencies>
 
 
@@ -68,8 +97,8 @@
     <properties>
         <!-- 修改JDK的编译版本为1.8 -->
         <java.version>1.8</java.version>
-        <!-- 修改thymeleaf的版本 -->
-        <thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>
-        <thymeleaf-layout-dialect.version>2.0.4</thymeleaf-layout-dialect.version>
+        <!--        &lt;!&ndash; 修改thymeleaf的版本 &ndash;&gt;-->
+        <!--        <thymeleaf.version>2.0.2.RELEASE</thymeleaf.version>-->
+        <!--        <thymeleaf-layout-dialect.version>2.0.4</thymeleaf-layout-dialect.version>-->
     </properties>
 </project>

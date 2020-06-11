@@ -1,5 +1,7 @@
 package com.zhi.entity;
 
+import lombok.Data;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -9,6 +11,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2020-05-14 18:10:46
  */
+@Data
 public class AuthUser implements Serializable {
     private static final long serialVersionUID = -61510983957142731L;
     
